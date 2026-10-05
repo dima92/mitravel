@@ -1,0 +1,178 @@
+@use "sass:color";
+@use "../helpers" as *;
+@use "../variables" as *;
+
+.featured-stories {
+  width: 100%;
+  background-color: $white-color;
+  margin: 0;
+  padding: 0;
+
+  &__container {
+    width: 100%;
+    height: to-rem(1080);
+    max-width: 100%;
+
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+
+    @include respond-to("tablet") {
+      display: flex;
+      flex-direction: column;
+      min-height: auto;
+    }
+  }
+}
+
+.featured-main {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  background:
+    linear-gradient(180deg, rgba(28, 46, 59, 0) 0%, #091117 100%),
+    url("/src/assets/images/features-bg.webp") center / cover no-repeat;
+
+  @include flex(column, flex-end, flex-start);
+
+  padding-left: fluid(150, 30);
+  padding-right: fluid(50, 20);
+  padding-bottom: fluid(80, 40);
+
+  @include respond-to("tablet") {
+    min-height: 80vh;
+    padding: to-rem(40) to-rem(20);
+  }
+
+  &__content {
+    max-width: to-rem(634);
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $accent-color;
+    color: $white-color;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    padding: to-rem(18) to-rem(31);
+    border-radius: to-rem(24);
+    margin-bottom: to-rem(16);
+    @include fluid-text(11, 10);
+  }
+
+  &__title {
+    font-weight: 700;
+    color: $white-color;
+    margin-bottom: to-rem(16);
+    @include fluid-text(48, 28, 1.33);
+  }
+
+  &__desc {
+    font-family: $second-font;
+    color: $white-color;
+    margin-bottom: to-rem(40);
+    @include fluid-text(14, 12, 1.5);
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $blue-color;
+    color: $white-color;
+    font-weight: 900;
+    font-size: to-rem(12);
+    letter-spacing: 0.18em;
+    padding: to-rem(33) to-rem(78);
+    border-radius: to-rem(8);
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: color.adjust($blue-color, $lightness: -10%);
+      transform: translateY(to-rem(-2));
+    }
+  }
+}
+
+.featured-aside {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(#3c4a51, 0.94);
+
+  padding-top: fluid(100, 40);
+  padding-inline: fluid(60, 20);
+  padding-bottom: to-rem(40);
+
+  @include flex(column, center, flex-start);
+
+  @include respond-to("tablet") {
+    padding: to-rem(40) to-rem(20);
+  }
+
+  &__title {
+    font-weight: 700;
+    color: $white-color;
+    margin-bottom: to-rem(96);
+    @include fluid-text(64, 22, 1.25);
+  }
+
+  &__list {
+    @include flex(column, flex-start, stretch, 16);
+  }
+}
+
+.featured-item {
+  width: 100%;
+
+  border-bottom: to-rem(1) solid rgba(#e3e3e3, 0.1);
+  padding-bottom: to-rem(32);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  &__link {
+    @include flex(row, flex-start, center, 24);
+    width: 100%;
+
+    &:hover {
+      .featured-item__post-title {
+        color: $blue-color;
+      }
+    }
+  }
+
+  &__avatar {
+    width: to-rem(48);
+    height: to-rem(48);
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    @include flex(column, center, flex-start, 8);
+  }
+
+  &__post-title {
+    font-weight: 700;
+    color: $white-color;
+    line-height: 1.33;
+    @include fluid-text(18, 16);
+  }
+
+  &__date {
+    font-family: $second-font;
+    color: rgba($white-color, 0.5);
+    @include fluid-text(11, 10);
+  }
+}

@@ -1,0 +1,124 @@
+@use "sass:color";
+@use "../helpers" as *;
+@use "../variables" as *;
+
+.featured-videos {
+  background-color: $white-color;
+  padding-block: fluid(120, 60);
+  width: 100%;
+  overflow: hidden;
+
+  &__header {
+    @include flex(column, center, center);
+    text-align: center;
+    margin-bottom: fluid(60, 40);
+  }
+
+  &__title {
+    font-weight: 700;
+    color: $dark-color;
+    margin-bottom: to-rem(24);
+    @include fluid-text(64, 28, 1.25);
+  }
+
+  &__subtitle {
+    font-family: $second-font;
+    font-weight: 300;
+    color: #788692;
+    max-width: to-rem(634);
+    line-height: 1.5;
+    @include fluid-text(16, 14);
+  }
+}
+
+.video-slider {
+  width: 100%;
+  padding-inline: to-rem(20);
+
+  &__wrapper {
+    @include flex(row, center, center, 40);
+    width: 100%;
+  }
+}
+
+.video-card {
+  position: relative;
+  flex-shrink: 0;
+  border-radius: to-rem(8);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all $transition-duration ease-in-out;
+
+  width: to-rem(350);
+  height: to-rem(450);
+  opacity: 0.4;
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &--active {
+    width: to-rem(750);
+    height: to-rem(500);
+    opacity: 1;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba($dark-color, 0) 60%,
+        rgba($dark-color, 0.7) 100%
+      );
+      pointer-events: none;
+    }
+  }
+
+  &__play {
+    position: absolute;
+    top: to-rem(39);
+    left: to-rem(48);
+
+    @include flex(row, center, center);
+    width: to-rem(56);
+    height: to-rem(56);
+    background-color: $accent-color;
+    color: $white-color;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba($accent-color, 0.3);
+
+    img {
+      transform: translateX(to-rem(1));
+    }
+
+    &:hover {
+      background-color: color.adjust($accent-color, $lightness: -10%);
+      transform: scale(1.05);
+    }
+  }
+
+  &__title {
+    position: absolute;
+    bottom: to-rem(40);
+    left: to-rem(40);
+    z-index: 2;
+
+    font-family: $font-family;
+    font-weight: 700;
+    color: $white-color;
+    margin: 0;
+    @include fluid-text(32, 18, 1.25);
+  }
+}

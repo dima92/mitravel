@@ -1,0 +1,23 @@
+@use "helpers/functions" as *;
+
+// Сетка
+$container-width: 1570;
+$container-padding-x: 15;
+
+// Анимации
+$transition-duration: 0.3s;
+$transition-base: all $transition-duration ease-in-out;
+
+// Шрифты
+$font-family: "SF-Pro", sans-serif;
+$second-font: "SFProCompactText", sans-serif;
+$third-font: "Helvetica Neue", sans-serif;
+
+// ==========================================================================
+// ЦВЕТОВАЯ ПАЛИТРА (UI-KIT) — ПРОЕКТ MITRAVEL
+// ==========================================================================
+
+$white-color: #fff;
+$dark-color: #1c2e3d;
+$accent-color: #e8594e;
+$blue-color: #73afba;

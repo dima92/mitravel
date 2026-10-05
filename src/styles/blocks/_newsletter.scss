@@ -1,0 +1,150 @@
+@use "sass:color";
+@use "../helpers" as *;
+@use "../variables" as *;
+
+.newsletter {
+  position: relative;
+  width: 100%;
+  height: to-rem(894);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba($dark-color, 0.2) 0%,
+      rgba($dark-color, 0.5) 100%
+    ),
+    url("/src/assets/images/newsletter-bg.webp") center / cover no-repeat;
+
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: to-rem(30);
+    align-items: center;
+
+    @include respond-to("tablet") {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-block: to-rem(60);
+    }
+  }
+
+  &__content {
+    grid-column: span 7;
+    max-width: to-rem(634);
+    padding-bottom: to-rem(80);
+
+    @include respond-to("tablet") {
+      grid-column: span 12;
+      padding-bottom: 0;
+    }
+  }
+
+  &__card {
+    position: absolute;
+    right: to-rem(15);
+
+    bottom: 0;
+
+    transform: translateY(to-rem(95));
+
+    width: 100%;
+    max-width: to-rem(501);
+    background-color: $white-color;
+    border-radius: to-rem(8) to-rem(8) 0 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    z-index: 20;
+
+    @include respond-to("tablet") {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      transform: none;
+      margin-top: to-rem(40);
+      grid-column: span 12;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
+    color: $white-color;
+    margin-bottom: to-rem(40);
+    @include fluid-text(64, 32, 1.15);
+  }
+
+  &__description {
+    font-family: $second-font;
+    font-weight: 400;
+    color: $white-color;
+    line-height: 1.31;
+    @include fluid-text(16, 14);
+  }
+}
+
+.newsletter-form {
+  @include flex(column, space-between, stretch);
+  height: 100%;
+
+  &__fields {
+    padding: to-rem(45) to-rem(40);
+    @include flex(column, flex-start, stretch, 35);
+  }
+
+  &__field {
+    position: relative;
+    width: 100%;
+    border-bottom: to-rem(1) solid rgba($dark-color, 0.3);
+    padding-bottom: to-rem(25);
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    font-family: $font-family;
+    font-size: to-rem(11);
+    font-weight: 600;
+    color: $dark-color;
+    letter-spacing: 0.18em;
+
+    &::placeholder {
+      color: rgba($dark-color, 0.4);
+    }
+
+    &:focus {
+      & + .newsletter-form__field {
+        border-color: $blue-color;
+      }
+    }
+  }
+
+  &__btn {
+    width: 100%;
+    height: to-rem(96);
+    background-color: $blue-color;
+    color: $white-color;
+    border: none;
+    border-radius: 0 0 to-rem(8) to-rem(8);
+
+    font-family: $font-family;
+    font-weight: 900;
+    font-size: to-rem(12);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    @include flex(row, center, center);
+    transition: background-color $transition-duration ease-in-out;
+
+    &:hover {
+      background-color: color.adjust($blue-color, $lightness: -8%);
+    }
+  }
+}

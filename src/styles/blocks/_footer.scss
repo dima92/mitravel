@@ -1,0 +1,163 @@
+@use "sass:color";
+@use "../helpers" as *;
+@use "../variables" as *;
+
+.footer {
+  width: 100%;
+  background-color: $white-color;
+  box-shadow: inset 0 to-rem(1) 0 0 rgba(179, 179, 179, 0.3);
+
+  padding-top: fluid(100, 50);
+  padding-bottom: to-rem(40);
+
+  &__container {
+    @include flex(column, space-between, stretch);
+    min-height: to-rem(440);
+  }
+
+  &__widgets {
+    @include grid(4, 30);
+    width: 100%;
+    align-items: flex-start;
+
+    @include respond-to("tablet") {
+      grid-template-columns: repeat(2, 1fr);
+      gap: to-rem(40);
+    }
+    @include respond-to("mobile") {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+
+  &__bottom {
+    border-top: to-rem(1) solid rgba(179, 179, 179, 0.15);
+    padding-top: to-rem(30);
+    margin-top: to-rem(60);
+
+    @include flex(row, space-between, center);
+    width: 100%;
+
+    @include respond-to("tablet") {
+      @include flex(column, center, center, 15);
+      text-align: center;
+    }
+  }
+
+  &__copyright {
+    font-family: $second-font;
+    color: rgba($dark-color, 0.4);
+    @include fluid-text(13, 12);
+  }
+
+  &__legal {
+    @include flex(row, flex-end, center, 24);
+  }
+
+  &__legal-link {
+    font-family: $second-font;
+    color: rgba($dark-color, 0.4);
+    @include fluid-text(13, 12);
+
+    &:hover {
+      color: $blue-color;
+    }
+  }
+}
+
+.footer-widget {
+  &__title {
+    font-family: $font-family;
+    font-weight: 700;
+    color: $dark-color;
+    letter-spacing: 0.12em;
+    margin-bottom: to-rem(30);
+    @include fluid-text(14, 13);
+  }
+
+  &__list {
+    @include flex(column, flex-start, flex-start, 16);
+
+    @include respond-to("mobile") {
+      align-items: center;
+    }
+  }
+
+  &__link {
+    font-family: $second-font;
+    color: rgba($dark-color, 0.6);
+    @include fluid-text(14, 13);
+    transition: color $transition-duration ease-in-out;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+
+  &--subscribe {
+    max-width: to-rem(360);
+    width: 100%;
+    justify-self: flex-end;
+
+    @include respond-to("tablet") {
+      justify-self: flex-start;
+      max-width: 100%;
+    }
+  }
+}
+
+.footer-subscribe {
+  @include flex(column, flex-start, stretch, 20);
+
+  &__field {
+    position: relative;
+    width: 100%;
+    border-bottom: to-rem(1) solid rgba($dark-color, 0.15);
+    padding-bottom: to-rem(12);
+    @include flex(row, space-between, center);
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: $second-font;
+    color: $dark-color;
+    @include fluid-text(14, 13);
+
+    &::placeholder {
+      color: rgba($dark-color, 0.3);
+    }
+  }
+
+  &__icon {
+    color: rgba($dark-color, 0.3);
+    @include flex;
+  }
+
+  &__btn {
+    width: 100%;
+    height: to-rem(54);
+    background-color: $blue-color;
+    color: $white-color;
+    border: none;
+    border-radius: to-rem(4);
+
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: to-rem(12);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    @include flex(row, center, center);
+    transition:
+      background-color $transition-duration ease-in-out,
+      transform $transition-duration ease-in-out;
+
+    &:hover {
+      background-color: color.adjust($blue-color, $lightness: -6%);
+      transform: translateY(to-rem(-1));
+    }
+  }
+}
